@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="Home.css">
+</head>
+<body>
+    <section class="main">
+        <div class="container">
+            <div class="left">
+                <div class="links">
+                    <a href="./Home.html">DashBoard</a>
+                </div>
+                <div class="links">
+                    <a href="./Products.html">Products</a>
+                </div>
+            </div>
+            <div class="right" id="right">
+
+
+                
+                <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+
+                <!-- <div class="gridItem">
+                    <div class="product">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="">
+                        </div>
+                        <div class="description">
+                            <p>Camera</p>
+                        </div>
+                        <div class="rate">
+                            <p>Rs.80,000/-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="product">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="">
+                        </div>
+                        <div class="description">
+                            <p>Camera</p>
+                        </div>
+                        <div class="rate">
+                            <p>Rs.80,000/-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="product">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="">
+                        </div>
+                        <div class="description">
+                            <p>Camera</p>
+                        </div>
+                        <div class="rate">
+                            <p>Rs.80,000/-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="product">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="">
+                        </div>
+                        <div class="description">
+                            <p>Camera</p>
+                        </div>
+                        <div class="rate">
+                            <p>Rs.80,000/-</p>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <!-- ----------------------------------------------------------------------------------- -->
+
+
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded",loadproduct);
+        const layout = document.getElementById("right");
+        function loadproduct(){
+        let products;
+        if (localStorage.getItem("products")===null) {
+            products = [{
+                Url: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=1000&q=60",
+                desc: "Canon EQS Rebel T3i",
+                price: "50,000",
+                // stock: "25"
+            }];
+        }
+        else{
+            products = JSON.parse(localStorage.getItem("products"));
+        }
+        products.forEach((product)=>{
+            addlisting(product.Url,product.desc,product.price,product.stock)
+        })
+        }
+
+        // ------------------------------------------------------------------------------------------------------------------------------------------------
+        // function addlisting(Url,desc,price,stock)
+        // {
+        //     const productadd = document.createElement("div");
+        //     productadd.className = "gridItem";
+        //     productadd.innerHTML = `
+        //     <div class="product">
+        //         <div>
+        //             <img src=${Url} alt="">
+        //         </div>
+        //         <div class="description">
+        //             <p>${desc}</p>
+        //         </div>
+        //         <div class="rate">
+        //             <p>$<span>${price}</span>/-</p>
+        //         </div>
+        //         <div class="stock">
+        //             <p>Stock Available:<span>${stock}</span></p>
+        //         </div>
+        //     </div>`;
+        //     layout.prepend(productadd);
+        // }
+        // ------------------------------------------------------------------------------------------------------------------------------------------------
+
+        function addlisting(Url,desc,price)
+        {
+            const productadd = document.createElement("div");
+            productadd.className = "gridItem";
+            productadd.innerHTML = `
+            <div class="product">
+                <div>
+                    <img src=${Url} alt="">
+                </div>
+                <div class="description">
+                    <p>${desc}</p>
+                </div>
+                <div class="rate">
+                    <p>Rs.<span>${price}</span>/-</p>
+                </div>
+                
+            </div>`;
+            layout.prepend(productadd);
+        }
+    </script>
+</body>
+</html>
